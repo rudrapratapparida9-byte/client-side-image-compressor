@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Client-Side Image Compressor & Resizer – 100% Private In-Browser Tool</title>
+  <title>Client-Side Image Compressor &amp; Resizer – 100% Private In-Browser Tool</title>
   
   <!-- SEO & Social Meta Tags -->
   <meta name="description" content="Compress, resize, and convert JPG, PNG, WebP, and AVIF images instantly in your browser with zero server uploads. 100% free, private, secure, and fast.">
-  <meta name="keywords" content="image compressor, client side image compressor, compress image online, resize image, webp converter, reduce image size, private image compressor, bulk image optimizer">
+  <meta name="keywords" content="image compressor, client side image compressor, compress image online, resize image, webp converter, reduce image size, private image compressor, bulk image optimizer, adsense compliant tool">
   <meta name="author" content="OptiPix Image Suite">
   <meta name="theme-color" content="#4f46e5">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Client-Side Image Compressor & Resizer">
+  <meta property="og:title" content="Client-Side Image Compressor &amp; Resizer">
   <meta property="og:description" content="Compress and scale JPG, PNG, and WebP images instantly in your browser without uploading to any remote server.">
   <meta property="og:image" content="icons/icon-512.svg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Client-Side Image Compressor & Resizer">
+  <meta name="twitter:title" content="Client-Side Image Compressor &amp; Resizer">
   <meta name="twitter:description" content="100% Private in-browser image optimization with real-time before/after comparison.">
 
   <!-- PWA & Favicon -->
@@ -30,6 +30,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Google AdSense Auto Ads Script (Replace ca-pub-XXXXXXXXXXXXXXXX with your Publisher ID) -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
 
   <!-- JSZip for Bulk Zip Downloads -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
@@ -45,10 +48,17 @@
           <i class="fa-solid fa-file-image"></i>
         </div>
         <div>
-          <h1 class="brand-title">Client-Side Image Compressor &amp; Resizer</h1>
+          <h1 class="brand-title">Client-Side Image Compressor</h1>
           <span class="private-badge"><i class="fa-solid fa-shield-halved"></i> 100% PRIVATE</span>
         </div>
       </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="privacy.html" class="nav-link">Privacy</a>
+        <a href="terms.html" class="nav-link">Terms</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
       <div class="header-actions">
         <button id="pwaInstallBtn" class="btn-icon-text" style="display: none;" title="Install App">
           <i class="fa-solid fa-download"></i> <span>Install</span>
@@ -62,6 +72,16 @@
 
   <!-- Main Container -->
   <main class="main-content">
+
+    <!-- Top Header Ad Placement (Google AdSense Ready) -->
+    <div class="ad-slot-container">
+      <span class="ad-label">ADVERTISEMENT</span>
+      <!-- Google AdSense Unit Container -->
+      <div class="ad-content-placeholder" style="color: var(--text-muted); font-size: 0.8rem; text-align: center;">
+        Responsive Header Ad Slot (728x90 / Auto)
+      </div>
+    </div>
+
     <div class="app-card">
       <!-- Subtitle Description -->
       <p class="app-subtitle">
@@ -203,7 +223,7 @@
           </div>
         </div>
 
-        <!-- Size Comparison Metrics Banner (Matching Reference Design) -->
+        <!-- Size Comparison Metrics Banner -->
         <div class="metrics-banner">
           <div class="metric-item">
             <span class="metric-label">ORIGINAL SIZE</span>
@@ -268,7 +288,7 @@
           </div>
         </div>
 
-        <!-- Bottom Action Row (Matching Reference Design) -->
+        <!-- Bottom Action Row -->
         <div class="action-footer">
           <div class="footer-left">
             <button type="button" id="chooseAnotherBtn" class="btn btn-secondary">
@@ -305,7 +325,15 @@
 
     </div>
 
-    <!-- Feature Highlights / Privacy & Compatibility Badges -->
+    <!-- Middle In-Content Ad Placement (Google AdSense Ready) -->
+    <div class="ad-slot-container">
+      <span class="ad-label">ADVERTISEMENT</span>
+      <div class="ad-content-placeholder" style="color: var(--text-muted); font-size: 0.8rem; text-align: center;">
+        In-Article Native Ad Unit / Display Banner
+      </div>
+    </div>
+
+    <!-- Feature Highlights -->
     <section class="features-grid">
       <div class="feature-card">
         <div class="feat-icon"><i class="fa-solid fa-lock"></i></div>
@@ -329,7 +357,69 @@
       </div>
     </section>
 
-    <!-- FAQ & Info Accordion for SEO & Usability -->
+    <!-- Comprehensive Guide & Educational Articles (AdSense High-Value Content) -->
+    <section class="guide-section">
+      <article class="guide-article">
+        <h2>Why Image Compression Matters for Web Speed &amp; SEO</h2>
+        <p>Uncompressed high-resolution images are the number one cause of slow-loading websites and high mobile bounce rates. Google's Core Web Vitals algorithms directly evaluate <strong>Largest Contentful Paint (LCP)</strong>, penalizing pages that take longer than 2.5 seconds to render hero visuals.</p>
+        <p>By compressing images using modern lossy and lossless algorithms, you can reduce payload sizes by <strong>40% to 80%</strong> without noticeable human-perceivable degradation in quality.</p>
+
+        <h3>Comparison of Modern Image Formats</h3>
+        <div class="table-responsive">
+          <table class="format-table">
+            <thead>
+              <tr>
+                <th>Format</th>
+                <th>Best Use Case</th>
+                <th>Transparency</th>
+                <th>Typical Compression Savings</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>WebP</strong></td>
+                <td>General web graphics, blog photos, banners</td>
+                <td>Yes</td>
+                <td><strong>30% – 50%</strong> smaller than JPEG</td>
+              </tr>
+              <tr>
+                <td><strong>AVIF</strong></td>
+                <td>Next-generation web apps, ultra-small assets</td>
+                <td>Yes</td>
+                <td><strong>50% – 70%</strong> smaller than JPEG</td>
+              </tr>
+              <tr>
+                <td><strong>JPEG / JPG</strong></td>
+                <td>Legacy browser compatibility, print media</td>
+                <td>No</td>
+                <td>Standard baseline</td>
+              </tr>
+              <tr>
+                <td><strong>PNG</strong></td>
+                <td>Logos, icons, pixel art requiring 100% losslessness</td>
+                <td>Yes</td>
+                <td>Lossless (larger file size)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>How to Choose the Right Compression Settings</h3>
+        <ol>
+          <li><strong>Quality 80% (Standard)</strong>: The recommended sweet spot for web articles, e-commerce, and social media. Cuts file size by over half with crystal clear clarity.</li>
+          <li><strong>Quality 65% (Balanced)</strong>: Ideal for background images, thumbnails, and fast mobile landing pages.</li>
+          <li><strong>Quality 40% (Low)</strong>: Used when strict file size quotas must be met (e.g. government application portals, email attachments &lt; 50 KB).</li>
+        </ol>
+      </article>
+
+      <article class="guide-article">
+        <h2>Zero Server Uploads: The Future of Browser Security</h2>
+        <p>Traditional compression web tools upload your private pictures to remote servers. This presents potential security issues for personal documents, ID cards, proprietary diagrams, or confidential business material.</p>
+        <p>Our tool runs entirely within your device using <strong>HTML5 Canvas context rendering</strong>. The calculation and conversion occur in your local CPU/GPU memory, making it impossible for third parties to intercept or retain your files.</p>
+      </article>
+    </section>
+
+    <!-- FAQ & Info Accordion -->
     <section class="faq-section">
       <h2 class="section-title">Frequently Asked Questions</h2>
       <div class="faq-accordion">
@@ -351,10 +441,26 @@
         </details>
       </div>
     </section>
+
+    <!-- Bottom Footer Ad Placement (Google AdSense Ready) -->
+    <div class="ad-slot-container">
+      <span class="ad-label">ADVERTISEMENT</span>
+      <div class="ad-content-placeholder" style="color: var(--text-muted); font-size: 0.8rem; text-align: center;">
+        Bottom Responsive Banner Ad Unit
+      </div>
+    </div>
+
   </main>
 
-  <!-- Footer -->
+  <!-- Footer with Full AdSense Compliance Links -->
   <footer class="app-footer">
+    <div class="footer-links">
+      <a href="index.html">Home</a> &bull;
+      <a href="about.html">About Us</a> &bull;
+      <a href="privacy.html">Privacy Policy</a> &bull;
+      <a href="terms.html">Terms of Service</a> &bull;
+      <a href="contact.html">Contact Us</a>
+    </div>
     <p>&copy; 2026 Client-Side Image Compressor &amp; Resizer &bull; High Performance &bull; 100% Client-Side Privacy</p>
   </footer>
 

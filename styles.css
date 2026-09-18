@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Client-Side Image Compressor & Resizer - Modern Design System & Styles
+   Client-Side Image Compressor & Resizer - Complete Design System & Styles
    ========================================================================== */
 
 :root {
@@ -103,10 +103,11 @@ body {
 .header-container {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0.85rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .brand-group {
@@ -150,6 +151,24 @@ body {
   letter-spacing: 0.04em;
   padding: 2px 8px;
   border-radius: var(--radius-full);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary);
 }
 
 .header-actions {
@@ -205,6 +224,30 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 1.75rem 1.25rem 3rem;
+}
+
+/* AdSense Banner Slots (Policy Compliant) */
+.ad-slot-container {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card-subtle);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  overflow: hidden;
+  min-height: 90px;
+}
+
+.ad-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
 }
 
 /* Main App Card (Matching Reference Screenshot) */
@@ -560,7 +603,7 @@ body {
   outline: none;
 }
 
-/* Metrics Banner (Matches the reference screenshot precisely!) */
+/* Metrics Banner */
 .metrics-banner {
   background: var(--bg-banner);
   border: 1px solid var(--border-color);
@@ -834,7 +877,7 @@ body {
   clip-path: none;
 }
 
-/* Action Footer (Matches screenshot buttons!) */
+/* Action Footer */
 .action-footer {
   display: flex;
   align-items: center;
@@ -1100,6 +1143,210 @@ body {
   line-height: 1.5;
 }
 
+/* Guide Articles Section (High-Value AdSense Content) */
+.guide-section {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.guide-article {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+
+.guide-article h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.guide-article h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.guide-article p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.guide-article ul, .guide-article ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.guide-article li {
+  margin-bottom: 0.4rem;
+}
+
+/* Comparison Table */
+.table-responsive {
+  overflow-x: auto;
+  margin: 1.25rem 0;
+}
+
+.format-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.format-table th, .format-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.format-table th {
+  background: var(--bg-card-subtle);
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.format-table td {
+  color: var(--text-muted);
+}
+
+/* Content Pages (Privacy, Terms, About, Contact) */
+.content-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.last-updated {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.policy-section {
+  margin-bottom: 2rem;
+}
+
+.policy-section h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.policy-section p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.policy-section ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.policy-section li {
+  margin-bottom: 0.4rem;
+}
+
+.policy-section a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Contact Form */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-card-box {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.contact-icon {
+  font-size: 1.75rem;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.contact-card-box h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.contact-card-box p {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.contact-form {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  max-width: 600px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+.form-input {
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+}
+
 /* FAQ Section */
 .faq-section {
   margin-top: 3rem;
@@ -1153,10 +1400,30 @@ body {
 .app-footer {
   background: var(--bg-card);
   border-top: 1px solid var(--border-color);
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   text-align: center;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
+}
+
+.footer-links {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--primary);
 }
 
 /* Toast */
@@ -1200,14 +1467,26 @@ body {
     margin-left: 0;
     width: 100%;
   }
-  .app-card {
+  .app-card, .content-card {
     padding: 1.5rem 1.25rem;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
   .header-container {
     padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 0.85rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
   }
   .brand-title {
     font-size: 0.98rem;

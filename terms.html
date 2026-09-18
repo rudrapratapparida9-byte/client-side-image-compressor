@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service – Client-Side Image Compressor & Resizer</title>
+  <meta name="description" content="Terms of Service and usage conditions for Client-Side Image Compressor & Resizer.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="icons/icon-512.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <a href="index.html" class="brand-link" style="display: flex; align-items: center; gap: 0.85rem; text-decoration: none; color: inherit;">
+          <div class="brand-icon">
+            <i class="fa-solid fa-file-image"></i>
+          </div>
+          <div>
+            <h1 class="brand-title">Client-Side Image Compressor</h1>
+            <span class="private-badge"><i class="fa-solid fa-shield-halved"></i> 100% PRIVATE</span>
+          </div>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="privacy.html" class="nav-link">Privacy</a>
+        <a href="terms.html" class="nav-link active">Terms</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="btn-icon" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="content-card">
+      <h1 class="page-title">Terms of Service</h1>
+      <p class="last-updated">Last Updated: September 2026</p>
+
+      <section class="policy-section">
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing and using <strong>Client-Side Image Compressor &amp; Resizer</strong>, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>2. Free Use &amp; License</h2>
+        <p>Our image compression and resizing tools are provided 100% free of charge for both personal and commercial purposes. You retain full ownership and rights over all images processed through our browser application.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>3. Disclaimer of Warranties</h2>
+        <p>The service is provided "as is" and "as available" without warranty of any kind, either express or implied. While we strive for optimal compression ratios and visual fidelity, we make no guarantees that results will meet specific file size limits or technical requirements without manual tuning.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>4. Limitation of Liability</h2>
+        <p>In no event shall the developers or maintainers be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use or inability to use this service.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>5. Advertisements &amp; External Links</h2>
+        <p>Our website may display third-party advertisements served by Google AdSense and other advertising networks. We are not responsible for the content, privacy practices, or accuracy of any third-party websites linked through such advertisements.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="index.html">Home</a> &bull;
+      <a href="about.html">About Us</a> &bull;
+      <a href="privacy.html">Privacy Policy</a> &bull;
+      <a href="terms.html">Terms of Service</a> &bull;
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 Client-Side Image Compressor &bull; 100% Client-Side Privacy</p>
+  </footer>
+
+  <script>
+    const themeBtn = document.getElementById('themeToggleBtn');
+    const savedTheme = localStorage.getItem('app-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (themeBtn) {
+      themeBtn.querySelector('i').className = savedTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      themeBtn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('app-theme', next);
+        themeBtn.querySelector('i').className = next === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – Client-Side Image Compressor & Resizer</title>
+  <meta name="description" content="Learn about Client-Side Image Compressor & Resizer, our mission for web privacy, and how in-browser canvas technology works.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="icons/icon-512.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <a href="index.html" class="brand-link" style="display: flex; align-items: center; gap: 0.85rem; text-decoration: none; color: inherit;">
+          <div class="brand-icon">
+            <i class="fa-solid fa-file-image"></i>
+          </div>
+          <div>
+            <h1 class="brand-title">Client-Side Image Compressor</h1>
+            <span class="private-badge"><i class="fa-solid fa-shield-halved"></i> 100% PRIVATE</span>
+          </div>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="privacy.html" class="nav-link">Privacy</a>
+        <a href="terms.html" class="nav-link">Terms</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="btn-icon" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="content-card">
+      <h1 class="page-title">About Our Mission &amp; Technology</h1>
+      <p class="last-updated">Fast, Private &amp; Zero-Server Image Optimization</p>
+
+      <section class="policy-section">
+        <h2>Who We Are</h2>
+        <p><strong>Client-Side Image Compressor &amp; Resizer</strong> was founded with a straightforward goal: providing creators, designers, developers, and photographers with a lightning-fast, studio-grade image compression tool without sacrificing privacy or requiring server uploads.</p>
+      </section>
+
+      <section class="policy-section">
+        <h2>How It Works</h2>
+        <p>Traditional image compressors upload your sensitive photos to remote cloud servers, wait in a processing queue, compress the file, and send it back over the internet. This introduces security risks, bandwidth consumption, and delays.</p>
+        <p>Our application uses modern <strong>HTML5 Canvas, OffscreenCanvas, and Web Workers</strong> to execute state-of-the-art compression routines directly inside your web browser. This means:</p>
+        <ul>
+          <li><strong>Instant Execution</strong>: No network latency or queue wait times.</li>
+          <li><strong>Zero Data Leaks</strong>: Your images never leave your computer or smartphone.</li>
+          <li><strong>Next-Gen Formats</strong>: Convert effortlessly into modern formats like WebP and AVIF to speed up websites and reduce mobile data usage.</li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>Open Web Standards</h2>
+        <p>We are dedicated to building lightweight, responsive, accessible web tools that adhere to modern W3C open web standards and operate across all major browsers (Chrome, Safari, Firefox, Edge) and operating systems.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="index.html">Home</a> &bull;
+      <a href="about.html">About Us</a> &bull;
+      <a href="privacy.html">Privacy Policy</a> &bull;
+      <a href="terms.html">Terms of Service</a> &bull;
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 Client-Side Image Compressor &bull; 100% Client-Side Privacy</p>
+  </footer>
+
+  <script>
+    const themeBtn = document.getElementById('themeToggleBtn');
+    const savedTheme = localStorage.getItem('app-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (themeBtn) {
+      themeBtn.querySelector('i').className = savedTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      themeBtn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('app-theme', next);
+        themeBtn.querySelector('i').className = next === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      });
+    }
+  </script>
+</body>
+</html>
