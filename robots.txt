@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://teams-patient-weekends-cheers.trycloudflare.com/sitemap.xml
+Sitemap: https://client-side-image-compressor.onrender.com/sitemap.xml
