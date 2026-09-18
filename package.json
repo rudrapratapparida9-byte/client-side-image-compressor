@@ -1,0 +1,20 @@
+{
+  "name": "client-side-image-compressor",
+  "version": "1.0.0",
+  "description": "100% Private, Client-Side In-Browser Image Compressor & Resizer Suite",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -l 8080",
+    "deploy:surge": "npx surge . --domain image-compressor-suite.surge.sh"
+  },
+  "keywords": [
+    "image-compressor",
+    "image-resizer",
+    "client-side",
+    "privacy-first",
+    "webp-converter",
+    "avif-converter"
+  ],
+  "author": "Rudra Pratap Parida",
+  "license": "MIT"
+}

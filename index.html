@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Client-Side Image Compressor & Resizer – 100% Private In-Browser Tool</title>
+  
+  <!-- SEO & Social Meta Tags -->
+  <meta name="description" content="Compress, resize, and convert JPG, PNG, WebP, and AVIF images instantly in your browser with zero server uploads. 100% free, private, secure, and fast.">
+  <meta name="keywords" content="image compressor, client side image compressor, compress image online, resize image, webp converter, reduce image size, private image compressor, bulk image optimizer">
+  <meta name="author" content="OptiPix Image Suite">
+  <meta name="theme-color" content="#4f46e5">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Client-Side Image Compressor & Resizer">
+  <meta property="og:description" content="Compress and scale JPG, PNG, and WebP images instantly in your browser without uploading to any remote server.">
+  <meta property="og:image" content="icons/icon-512.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Client-Side Image Compressor & Resizer">
+  <meta name="twitter:description" content="100% Private in-browser image optimization with real-time before/after comparison.">
+
+  <!-- PWA & Favicon -->
+  <link rel="icon" type="image/svg+xml" href="icons/icon-512.svg">
+  <link rel="apple-touch-icon" href="icons/icon-512.svg">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- JSZip for Bulk Zip Downloads -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="brand-icon">
+          <i class="fa-solid fa-file-image"></i>
+        </div>
+        <div>
+          <h1 class="brand-title">Client-Side Image Compressor &amp; Resizer</h1>
+          <span class="private-badge"><i class="fa-solid fa-shield-halved"></i> 100% PRIVATE</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="pwaInstallBtn" class="btn-icon-text" style="display: none;" title="Install App">
+          <i class="fa-solid fa-download"></i> <span>Install</span>
+        </button>
+        <button id="themeToggleBtn" class="btn-icon" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    <div class="app-card">
+      <!-- Subtitle Description -->
+      <p class="app-subtitle">
+        Compress and scale JPG, PNG, and WebP images instantly in your browser without uploading to any remote server.
+      </p>
+
+      <!-- Upload Drop Zone (Visible when no images or ready to add) -->
+      <section id="dropZone" class="upload-zone">
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/avif,image/gif,image/bmp" multiple class="file-input-hidden">
+        <div class="upload-illustration">
+          <div class="upload-icon-pulse">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+          </div>
+        </div>
+        <h2 class="upload-heading">Drag &amp; Drop your images here</h2>
+        <p class="upload-sub">Supports <strong>JPG, PNG, WebP, AVIF</strong> &bull; Multiple files supported &bull; Up to 50MB each</p>
+        <div class="upload-btn-row">
+          <button type="button" id="browseBtn" class="btn btn-primary">
+            <i class="fa-solid fa-folder-open"></i> Browse Images
+          </button>
+          <button type="button" id="sampleBtn" class="btn btn-outline">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Try Sample Photo
+          </button>
+        </div>
+        <div class="privacy-notice">
+          <i class="fa-solid fa-lock"></i> All processing happens inside your device's memory. Zero server uploads.
+        </div>
+      </section>
+
+      <!-- Main Editor / Compression Workspace (Visible after image loaded) -->
+      <section id="editorWorkspace" class="editor-workspace" style="display: none;">
+        
+        <!-- Batch Tabs / Image Switcher (When multiple images loaded) -->
+        <div id="batchNav" class="batch-nav" style="display: none;">
+          <div class="batch-tabs-scroll" id="batchTabsList">
+            <!-- Dynamically populated thumbnail tabs -->
+          </div>
+          <button id="addMoreFilesBtn" class="btn btn-sm btn-outline">
+            <i class="fa-solid fa-plus"></i> Add More
+          </button>
+        </div>
+
+        <!-- Controls Grid (Quality, Resize, Format) -->
+        <div class="controls-panel">
+          <!-- Quality Control -->
+          <div class="control-box">
+            <div class="control-header">
+              <label for="qualitySlider" class="control-label">Compression Quality</label>
+              <span id="qualityVal" class="control-badge">80%</span>
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" id="qualitySlider" min="5" max="100" value="80" step="1" class="custom-slider">
+            </div>
+            <div class="quick-presets">
+              <button type="button" class="preset-btn" data-quality="40">Low (40%)</button>
+              <button type="button" class="preset-btn" data-quality="65">Balanced (65%)</button>
+              <button type="button" class="preset-btn active" data-quality="80">Standard (80%)</button>
+              <button type="button" class="preset-btn" data-quality="92">High (92%)</button>
+            </div>
+          </div>
+
+          <!-- Max Width / Resize Control -->
+          <div class="control-box">
+            <div class="control-header">
+              <label for="resizeSlider" class="control-label">Max Width / Resize (px)</label>
+              <span id="resizeVal" class="control-badge">Original</span>
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" id="resizeSlider" min="100" max="3840" value="1920" step="10" class="custom-slider">
+            </div>
+            <div class="resize-options-row">
+              <div class="dimension-inputs">
+                <div class="input-group-sm">
+                  <span>W:</span>
+                  <input type="number" id="widthInput" min="10" max="10000" placeholder="Width">
+                </div>
+                <button type="button" id="aspectLockBtn" class="btn-lock active" title="Lock Aspect Ratio">
+                  <i class="fa-solid fa-link"></i>
+                </button>
+                <div class="input-group-sm">
+                  <span>H:</span>
+                  <input type="number" id="heightInput" min="10" max="10000" placeholder="Height">
+                </div>
+              </div>
+              <div class="scale-pills">
+                <button type="button" class="scale-btn" data-scale="0.25">25%</button>
+                <button type="button" class="scale-btn" data-scale="0.5">50%</button>
+                <button type="button" class="scale-btn" data-scale="0.75">75%</button>
+                <button type="button" class="scale-btn active" data-scale="1">100%</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Output Format Selector -->
+          <div class="control-box format-box">
+            <label for="formatSelect" class="control-label">Output Format</label>
+            <div class="select-wrapper">
+              <select id="formatSelect" class="custom-select">
+                <option value="image/webp" selected>WebP (.webp – Smallest &amp; Modern)</option>
+                <option value="image/jpeg">JPEG (.jpg / .jpeg – Universal)</option>
+                <option value="image/png">PNG (.png – Lossless / Transparent)</option>
+                <option value="image/avif">AVIF (.avif – Ultra High Efficiency)</option>
+              </select>
+              <i class="fa-solid fa-chevron-down select-chevron"></i>
+            </div>
+            
+            <!-- Quick Tools Bar (Rotate, Flip, Filter) -->
+            <div class="image-tools-bar">
+              <button type="button" id="rotateLeftBtn" class="tool-btn" title="Rotate Left 90°">
+                <i class="fa-solid fa-rotate-left"></i>
+              </button>
+              <button type="button" id="rotateRightBtn" class="tool-btn" title="Rotate Right 90°">
+                <i class="fa-solid fa-rotate-right"></i>
+              </button>
+              <button type="button" id="flipHBtn" class="tool-btn" title="Flip Horizontal">
+                <i class="fa-solid fa-arrows-left-right"></i>
+              </button>
+              <button type="button" id="grayscaleBtn" class="tool-btn" title="Toggle Grayscale">
+                <i class="fa-solid fa-circle-half-stroke"></i> B&amp;W
+              </button>
+              <button type="button" id="targetSizeToggleBtn" class="tool-btn" title="Compress to Target File Size">
+                <i class="fa-solid fa-bullseye"></i> Target KB
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Target Size Modal / Input Bar (collapsible) -->
+        <div id="targetSizeBar" class="target-size-bar" style="display: none;">
+          <div class="target-size-inner">
+            <span><i class="fa-solid fa-bullseye"></i> Target File Size:</span>
+            <input type="number" id="targetSizeInput" min="5" max="10000" placeholder="e.g. 100" class="input-xs">
+            <select id="targetSizeUnit" class="select-xs">
+              <option value="KB" selected>KB</option>
+              <option value="MB">MB</option>
+            </select>
+            <button type="button" id="applyTargetSizeBtn" class="btn btn-sm btn-primary">Auto-Optimize</button>
+            <button type="button" id="closeTargetSizeBtn" class="btn btn-sm btn-outline">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Size Comparison Metrics Banner (Matching Reference Design) -->
+        <div class="metrics-banner">
+          <div class="metric-item">
+            <span class="metric-label">ORIGINAL SIZE</span>
+            <span id="origSizeDisplay" class="metric-value orig">0 KB</span>
+          </div>
+          <div class="metric-arrow">
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">COMPRESSED SIZE</span>
+            <span id="compSizeDisplay" class="metric-value comp">0 KB</span>
+          </div>
+          <div class="metric-item saved-item">
+            <span class="metric-label">SAVED</span>
+            <span id="savedPercentDisplay" class="metric-value saved">0%</span>
+          </div>
+          <div class="metric-dimensions">
+            <span id="dimDisplay"><i class="fa-solid fa-expand"></i> 0 &times; 0 &rarr; 0 &times; 0</span>
+          </div>
+        </div>
+
+        <!-- Visual Comparison Viewport (Split Slider & Side-by-Side) -->
+        <div class="preview-section">
+          <div class="preview-toolbar">
+            <div class="preview-mode-toggles">
+              <button type="button" class="view-mode-btn active" data-mode="split">
+                <i class="fa-solid fa-table-columns"></i> Split Slider
+              </button>
+              <button type="button" class="view-mode-btn" data-mode="side">
+                <i class="fa-solid fa-grip-vertical"></i> Side-by-Side
+              </button>
+              <button type="button" class="view-mode-btn" data-mode="result">
+                <i class="fa-solid fa-image"></i> Result Only
+              </button>
+            </div>
+            <div class="zoom-controls">
+              <button type="button" id="zoomOutBtn" class="btn-icon-sm" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+              <span id="zoomLevelText">100%</span>
+              <button type="button" id="zoomInBtn" class="btn-icon-sm" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+              <button type="button" id="zoomResetBtn" class="btn-icon-sm" title="Reset Zoom"><i class="fa-solid fa-compress"></i></button>
+            </div>
+          </div>
+
+          <!-- Split Comparison Container -->
+          <div id="comparisonContainer" class="comparison-container mode-split">
+            <!-- Original Image Layer -->
+            <div class="comp-layer layer-original">
+              <img id="imgOriginal" alt="Original Uploaded Preview">
+              <span class="img-badge badge-orig">Original</span>
+            </div>
+            <!-- Compressed Image Layer (Clipped in split mode) -->
+            <div id="compressedWrapper" class="comp-layer layer-compressed">
+              <img id="imgCompressed" alt="Compressed Live Result">
+              <span class="img-badge badge-comp">Compressed</span>
+            </div>
+            <!-- Interactive Divider Handle -->
+            <div id="splitHandle" class="split-divider">
+              <div class="handle-grip">
+                <i class="fa-solid fa-arrows-left-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Action Row (Matching Reference Design) -->
+        <div class="action-footer">
+          <div class="footer-left">
+            <button type="button" id="chooseAnotherBtn" class="btn btn-secondary">
+              <i class="fa-solid fa-rotate-left"></i> Choose Another
+            </button>
+            <button type="button" id="copyClipboardBtn" class="btn btn-outline" title="Copy compressed image to clipboard">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+          <div class="footer-right">
+            <button type="button" id="downloadBatchBtn" class="btn btn-secondary" style="display: none;">
+              <i class="fa-solid fa-file-zipper"></i> Download All (.ZIP)
+            </button>
+            <button type="button" id="downloadSingleBtn" class="btn btn-download">
+              <i class="fa-solid fa-download"></i> Download Compressed Image
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Batch Queue Overview List (When 2+ images uploaded) -->
+      <section id="batchOverviewSection" class="batch-overview-section" style="display: none;">
+        <div class="batch-header">
+          <h3><i class="fa-solid fa-layer-group"></i> Batch Processing Queue (<span id="batchCountText">0</span> files)</h3>
+          <button type="button" id="applySettingsToAllBtn" class="btn btn-xs btn-primary">
+            Apply Current Settings To All
+          </button>
+        </div>
+        <div id="batchItemsGrid" class="batch-grid">
+          <!-- Batch card items generated in JS -->
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Feature Highlights / Privacy & Compatibility Badges -->
+    <section class="features-grid">
+      <div class="feature-card">
+        <div class="feat-icon"><i class="fa-solid fa-lock"></i></div>
+        <h3>100% In-Browser Privacy</h3>
+        <p>Your photos never leave your device. All compression algorithms execute inside your local browser memory via Canvas and Web Workers.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon"><i class="fa-solid fa-bolt"></i></div>
+        <h3>Instant &amp; Real-Time</h3>
+        <p>Zero network lag or server queues. Adjust quality and dimensions with immediate live visual feedback and size calculation.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+        <h3>Universal Device Support</h3>
+        <p>Fully optimized for all modern phones, tablets, laptops, and browsers: Safari iOS, Chrome Android, Firefox, Edge &amp; Desktop.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon"><i class="fa-solid fa-file-export"></i></div>
+        <h3>Next-Gen Formats</h3>
+        <p>Convert seamlessly between WebP, JPEG, PNG, and AVIF to reduce bandwidth and dramatically accelerate website load times.</p>
+      </div>
+    </section>
+
+    <!-- FAQ & Info Accordion for SEO & Usability -->
+    <section class="faq-section">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-accordion">
+        <details class="faq-item">
+          <summary>Is my data uploaded to any server?</summary>
+          <p>No, absolutely not. This tool is 100% client-side. The images you select are decoded, resized, and compressed directly within your device's browser memory using native HTML5 Canvas APIs. No data is ever sent to any remote server.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which format gives the smallest file size with high quality?</summary>
+          <p><strong>WebP</strong> offers 25% to 35% smaller file sizes compared to traditional JPEG while retaining sharp visual clarity. For supported browsers, <strong>AVIF</strong> offers even higher compression ratios.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I compress multiple images at once?</summary>
+          <p>Yes! Simply drag and drop multiple images or select multiple files at once. You can adjust individual images or apply settings to all photos and download them together in a single convenient ZIP file.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does this work offline?</summary>
+          <p>Yes! With our Progressive Web App (PWA) support and Service Worker caching, you can install this app and use it completely offline on both mobile devices and desktop computers.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>&copy; 2026 Client-Side Image Compressor &amp; Resizer &bull; High Performance &bull; 100% Client-Side Privacy</p>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>
